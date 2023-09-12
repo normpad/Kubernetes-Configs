@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-service
+  labels:
+    app: pihole
+spec:
+  selector:
+    app: pihole
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      name: web
+      port: 80
+    - protocol: TCP
+      name: dns-tcp
+      port: 53
+    - protocol: UDP
+      name: dns-udp
+      port: 53
+  loadBalancerIP: 10.10.10.10
+  externalTrafficPolicy: Local
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-service2
+  labels:
+    app: pihole
+spec:
+  selector:
+    app: pihole
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      name: web
+      port: 80
+    - protocol: TCP
+      name: dns-tcp
+      port: 53
+    - protocol: UDP
+      name: dns-udp
+      port: 53
+  loadBalancerIP: 10.10.10.11
+  externalTrafficPolicy: Local
