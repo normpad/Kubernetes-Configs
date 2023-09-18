@@ -75,7 +75,7 @@ spec:
               protocol: TCP
           resources: 
             limits:
-              memory: "500Mi"
+              memory: "300Mi"
         - name: reactive-resume-client
           env:
             - name: PUBLIC_GOOGLE_CLIENT_ID
@@ -89,6 +89,6 @@ spec:
               protocol: TCP
           resources: 
             limits:
-              memory: "500Mi"
+              memory: "300Mi"
       restartPolicy: Always
 status: {}
