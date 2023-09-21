@@ -4,24 +4,22 @@ metadata:
   name: pihole-custom.list
 data:
   custom.list: |
-    10.10.10.100 tempest-cloud.com
-    10.10.10.100 hass.tempest-cloud.com
-    10.10.10.100 earthwalker.tempest-cloud.com
+    10.101.101.100 tempest-cloud.com
+    10.101.101.100 hass.tempest-cloud.com
+    10.101.101.100 earthwalker.tempest-cloud.com
     10.0.0.2 tower
-    192.168.3.71 plantcamera.local
-    192.168.3.70 plantmonitor.local
     10.0.0.3 kube
     10.0.0.53 kubeworker1
+    10.101.101.100 swag
+    10.101.101.101 nextcloud
+    10.101.101.102 hass
     10.10.10.10 dns1
     10.10.10.11 dns2
     10.10.10.55 kubepi1
     10.10.10.56 kubepi2
     10.10.10.57 kubetop
-    10.10.10.100 swag
-    10.10.10.101 nextcloud
     10.10.10.102 mariadb
     10.10.10.103 influxdb
-    10.10.10.104 hass
     10.10.10.105 mqtt
     10.10.10.106 deconz
     10.10.10.107 earthwalker
@@ -31,3 +29,4 @@ data:
     10.10.10.111 dashy
     10.10.10.112 uptimekuma
     10.10.10.113 fireflyiii
+    10.10.10.114 ghost
