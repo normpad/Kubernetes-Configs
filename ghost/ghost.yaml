@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost-deployment
+  labels:
+    app: ghost
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ghost
+  template:
+    metadata:
+      labels:
+        app: ghost
+    spec:
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        fsGroup: 65534
+      containers:
+      - name: ghost
+        image: ghost
+        ports:
+        - name:  web
+          containerPort:  2368
+          protocol: TCP
+        env:
+          - name: database__client
+            value: mysql
+          - name: database__connection__host
+            value: 10.10.10.102
+          - name: database__connection__user
+            value: ghost
+          - name: database__connection__password
+            value: vxDPpNZwhVBNPx5G4Gwv
+          - name: database__connection__database
+            value: ghost
+          - name: url
+            value: http://10.10.10.114:8080
+        volumeMounts:
+          - name: content
+            mountPath: /var/lib/ghost/content
+        resources:
+          requests:
+            cpu: "0.1"
+            memory: "100Mi"
+          limits: 
+            cpu: "1"
+            memory: "500Mi"
+      volumes:
+        - name:  content
+          persistentVolumeClaim: 
+            claimName: ghost-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  ghost-service
+spec:
+  selector:
+    app:  ghost
+  type:  LoadBalancer
+  ports:
+  - name: web
+    port:  80
+    protocol: TCP
+  loadBalancerIP: 10.10.10.114
