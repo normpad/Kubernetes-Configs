@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vaultwarden
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vaultwarden
+  template:
+    metadata:
+      labels:
+        app: vaultwarden
+    spec:
+      containers:
+      - name: vaultwarden
+        image: vaultwarden/server
+        env:
+        - name: DATABASE_URL
+          value: mysql://vaultwarden:xxUcNLIzFjRA3J4r9iAF@10.10.10.102:3306/vaultwarden
+        - name: ADMIN_TOKEN
+          value: xxUcNLIzFjRA3J4r9iAF
+        volumeMounts:
+          - name:  data
+            mountPath:  /data
+      volumes:
+      - name: data
+        persistentVolumeClaim: 
+          claimName: vaultwarden-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: vaultwarden-pvc
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: nfs-sc
+  accessModes:
+    - ReadWriteMany
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  vaultwarden-service
+spec:
+  selector:
+    app:  vaultwarden
+  type:  LoadBalancer
+  ports:
+  - name:  api
+    port:  3012
+    protocol: TCP
+  - name: admin
+    port: 80
+  loadBalancerIP: 10.101.101.103
