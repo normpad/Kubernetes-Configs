@@ -59,12 +59,17 @@ spec:
         env:
         - name: PIHOLE_DNS_
           value: 127.0.0.1#5053
+        - name: WEBPASSWORD
+          value: "ask3l22l@@s02S,"
         readinessProbe:
             exec:
               command: ['dig', '@127.0.0.1', 'google.com']
             timeoutSeconds: 20
             initialDelaySeconds: 5
             periodSeconds: 60
+        resources:
+          requests:
+            memory: "100Mi"
       - name: cloudflared
         image: cloudflare/cloudflared:latest
         args: ["proxy-dns"]
@@ -75,6 +80,9 @@ spec:
             value: "https://1.1.1.2/dns-query,https://1.0.0.2/dns-query,https://9.9.9.9/dns-query"
           - name: TUNNEL_DNS_PORT
             value: "5053"
+        resources:
+          requests:
+            memory: "100Mi"
       nodeSelector: 
         #beta.kubernetes.io/arch: arm64
       volumes:
