@@ -6,7 +6,7 @@ metadata:
 spec:
   addresses:
   - 10.10.10.9-10.10.10.254
-
+  - 10.101.101.2-10.101.101.254
 ---
 
 apiVersion: metallb.io/v1beta1
