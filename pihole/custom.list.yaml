@@ -9,15 +9,18 @@ data:
     10.101.101.100 earthwalker.tempest-cloud.com
     10.0.0.2 tower
     10.0.0.3 kube
+    10.0.0.4 switch
     10.0.0.53 kubeworker1
+    10.0.0.5 kubepi1
+    10.0.0.6 kuberock
+    10.0.0.7 kubepi2
+    10.0.0.8 kubetop
     10.101.101.100 swag
     10.101.101.101 nextcloud
     10.101.101.102 hass
+    10.101.101.103 vaultwarden
     10.10.10.10 dns1
     10.10.10.11 dns2
-    10.10.10.55 kubepi1
-    10.10.10.56 kubepi2
-    10.10.10.57 kubetop
     10.10.10.102 mariadb
     10.10.10.103 influxdb
     10.10.10.105 mqtt
@@ -27,6 +30,6 @@ data:
     10.10.10.109 resume
     10.10.10.110 postgres
     10.10.10.111 dashy
-    10.10.10.112 uptimekuma
     10.10.10.113 fireflyiii
     10.10.10.114 ghost
+    10.10.10.115 plex
