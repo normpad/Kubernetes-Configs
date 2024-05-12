@@ -1,12 +1,12 @@
 apiVersion: apps/v1
-kind: DaemonSet
-#kind: Deployment
+#kind: DaemonSet
+kind: Deployment
 metadata:
   name: pihole-deployment
   labels:
     app: pihole
 spec:
-  #replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: pihole
