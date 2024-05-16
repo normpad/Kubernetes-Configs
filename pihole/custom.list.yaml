@@ -7,18 +7,22 @@ data:
     10.101.101.100 tempest-cloud.com
     10.101.101.100 hass.tempest-cloud.com
     10.101.101.100 earthwalker.tempest-cloud.com
+    10.101.101.100 vw.tempest-cloud.com
     10.0.0.2 tower
     10.0.0.3 kube
     10.0.0.4 switch
-    10.0.0.53 kubeworker1
     10.0.0.5 kubepi1
     10.0.0.6 kuberock
     10.0.0.7 kubepi2
     10.0.0.8 kubetop
+    10.0.0.9 freshpi
+    10.0.0.10 regula1
+    10.0.0.53 kubeworker1
     10.101.101.100 swag
     10.101.101.101 nextcloud
     10.101.101.102 hass
     10.101.101.103 vaultwarden
+    10.101.101.104 teamspeak
     10.10.10.10 dns1
     10.10.10.11 dns2
     10.10.10.102 mariadb
@@ -33,3 +37,5 @@ data:
     10.10.10.113 fireflyiii
     10.10.10.114 ghost
     10.10.10.115 plex
+    10.10.10.116 photoprism
+    10.10.10.117 focalboard

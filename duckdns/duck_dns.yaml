@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: duckdns
+spec:
+  selector:
+    matchLabels:
+      app: duckdns
+  template:
+    metadata:
+      labels:
+        app: duckdns
+    spec:
+      containers:
+      - name: duckdns
+        image: linuxserver/duckdns
+        env:
+        - name: SUBDOMAINS
+          value: "tempest-cloud"
+        - name: TOKEN
+          valueFrom:
+            
+
+          

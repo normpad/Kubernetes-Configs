@@ -36,7 +36,6 @@ spec:
             - containerPort: 2222
               hostPort: 2222
               protocol: TCP
-          resources: {}
           volumeMounts:
             - mountPath: /var/lib/gitea
               name: gitea-claim0
