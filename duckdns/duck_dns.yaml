@@ -19,6 +19,10 @@ spec:
           value: "tempest-cloud"
         - name: TOKEN
           valueFrom:
-            
+            secretKeyRef:
+              name: duckdns
+              key: token
+        - name: LOG_FILE
+          value: "false"
 
           
