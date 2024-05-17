@@ -59,6 +59,11 @@ spec:
         env:
         - name: PIHOLE_DNS_
           value: 127.0.0.1#5053
+        - name: WEBPASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: pihole
+              key: admin-pw
         readinessProbe:
             exec:
               command: ['dig', '@127.0.0.1', 'google.com']
