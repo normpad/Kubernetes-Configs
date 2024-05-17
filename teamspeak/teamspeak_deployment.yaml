@@ -14,6 +14,18 @@ spec:
       storage: 2Gi
 ---
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jts3servermod-pvc
+spec:
+  resources:
+    requests:
+      storage: 1G
+  storageClassName: nfs-sc
+  accessModes:
+  - ReadWriteMany
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: teamspeak
@@ -66,9 +78,9 @@ spec:
           requests:
             cpu: 100m
             memory: 100Mi
-          limits:
-            cpu: 100m
-            memory: 100Mi
+          # limits:
+          #   cpu: 100m
+          #   memory: 100Mi
         # livenessProbe:
         #   tcpSocket:
         #     port: 80
@@ -109,13 +121,29 @@ spec:
         - name: voice
           containerPort: 9987
           protocol: UDP
+        - name: server-query
+          containerPort: 10011
+          protocol: TCP
         volumeMounts:
         - name: teamspeak-claim
           mountPath: /var/ts3server/
+      - name: jts3servermod
+        image: phaldan/jts3servermod
+        resources:
+          # limits:
+          #   memory: "128Mi"
+          #   cpu: "500m"
+        volumeMounts:
+        - name: jts3servermod-claim
+          mountPath: /JTS3ServerMod/config
       volumes:
         - name: teamspeak-claim
           persistentVolumeClaim:
             claimName: teamspeak-pvc
+        - name: jts3servermod-claim
+          persistentVolumeClaim:
+            claimName: jts3servermod-pvc
+
       restartPolicy: Always
 
 ---
