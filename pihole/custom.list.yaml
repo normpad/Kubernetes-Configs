@@ -38,8 +38,8 @@ data:
     10.101.101.102 hass.local
     10.101.101.103 vaultwarden
     10.101.101.103 vaultwarden.local
-    10.101.101.104 teamspeak
-    10.101.101.104 teamspeak.local
+    10.132.132.132 teamspeak
+    10.132.132.132 teamspeak.local
     10.10.10.10 dns1
     10.10.10.10 dns1.local
     10.10.10.11 dns2
