@@ -1,4 +1,5 @@
 #!/bin/bash
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
 
@@ -11,4 +12,3 @@ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs
     --set storageClass.onDelete=retain \
 
 kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
-kubectl patch storageclass nfs-sc -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
