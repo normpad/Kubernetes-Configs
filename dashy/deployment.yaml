@@ -13,6 +13,12 @@ spec:
     metadata:
       labels:
         app: dashy
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |
+          [{
+            "name": "services-network",
+            "ips": ["10.10.10.111/24"]
+          }]
     spec:
       tolerations:
       - key: "node.kubernetes.io/unreachable"

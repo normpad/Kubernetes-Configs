@@ -30,6 +30,8 @@ data:
     10.0.0.10 regula1.local
     10.0.0.53 kubeworker1
     10.0.0.53 kubeworker1.local
+    10.0.0.99 newnode
+    10.0.0.99 newnode.local
     10.101.101.100 swag
     10.101.101.100 swag.local
     10.101.101.101 nextcloud

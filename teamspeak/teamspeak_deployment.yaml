@@ -1,8 +1,16 @@
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: teamspeak
+#   labels:
+#     name: teamspeak
+
+---
 # apiVersion: networking.k8s.io/v1
 # kind: NetworkPolicy
 # metadata:
 #   name: teamspeak-network-policy
-#   namespace: teamspeak
+#   namespace: default
 # spec:
 #   podSelector:
 #     matchLabels:
@@ -21,7 +29,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: teamspeak-pvc
-  namespace: teamspeak
+  namespace: default
   labels:
     app: teamspeak
 spec:
@@ -36,7 +44,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: jts3servermod-pvc
-  namespace: teamspeak
+  namespace: default
 spec:
   resources:
     requests:
@@ -49,7 +57,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: teamspeak
-  namespace: teamspeak
+  namespace: default
 spec:
   selector:
     app: teamspeak
@@ -69,7 +77,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name:  teamspeak
-  namespace: teamspeak
+  namespace: default
   labels:
     app:  teamspeak
 spec:
@@ -86,6 +94,8 @@ spec:
     metadata:
       labels:
         app:  teamspeak
+      annotations:
+         k8s.v1.cni.cncf.io/networks: services-network
     spec:
       # initContainers:
         # Init containers are exactly like regular containers, except:
