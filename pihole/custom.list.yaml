@@ -12,26 +12,10 @@ data:
     10.0.0.1 router.local
     10.0.0.2 tower
     10.0.0.2 tower.local
-    10.0.0.3 kube
-    10.0.0.3 kube.local
     10.0.0.4 switch
     10.0.0.4 switch.local
-    10.0.0.5 kubepi1
-    10.0.0.5 kubepi1.local
-    10.0.0.6 kuberock
-    10.0.0.6 kuberock.local
-    10.0.0.7 kubepi2
-    10.0.0.7 kubepi2.local
-    10.0.0.8 kubetop
-    10.0.0.8 kubetop.local
-    10.0.0.9 freshpi
-    10.0.0.9 freshpi.local
     10.0.0.10 regula1
     10.0.0.10 regula1.local
-    10.0.0.53 kubeworker1
-    10.0.0.53 kubeworker1.local
-    10.0.0.99 newnode
-    10.0.0.99 newnode.local
     10.101.101.100 swag
     10.101.101.100 swag.local
     10.101.101.101 nextcloud
@@ -74,3 +58,16 @@ data:
     10.10.10.116 photoprism.local
     10.10.10.117 focalboard
     10.10.10.117 focalboard.local
+
+    10.122.122.2 kube
+    10.122.122.2 kube.local
+    10.122.122.3 kubepi1
+    10.122.122.3 kubepi1.local
+    10.122.122.4 kuberock
+    10.122.122.4 kuberock.local
+    10.122.122.5 kubepi2
+    10.122.122.5 kubepi2.local
+    10.122.122.6 kubetop
+    10.122.122.6 kubetop.local
+    10.122.122.7 freshpi
+    10.122.122.7 freshpi.local
