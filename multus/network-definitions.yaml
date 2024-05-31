@@ -20,7 +20,7 @@ spec:
 apiVersion: "k8s.cni.cncf.io/v1"
 kind: NetworkAttachmentDefinition
 metadata:
-  name: services-network
+  name: exposed-services-network
 spec:
   config: '{
       "cniVersion": "0.3.0",
@@ -39,7 +39,7 @@ spec:
 apiVersion: "k8s.cni.cncf.io/v1"
 kind: NetworkAttachmentDefinition
 metadata:
-  name: services-network
+  name: teamspeak-network
 spec:
   config: '{
       "cniVersion": "0.3.0",

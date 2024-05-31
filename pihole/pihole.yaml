@@ -6,7 +6,7 @@ metadata:
   labels:
     app: pihole
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: pihole
@@ -14,6 +14,12 @@ spec:
     metadata:
       labels:
         app: pihole
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |
+          [{
+            "name": "services-network",
+            "ips": ["10.10.10.11/24"]
+          }]
     spec:
       tolerations:
       - key: "node.kubernetes.io/unreachable"
@@ -73,6 +79,8 @@ spec:
             secretKeyRef:
               name: pihole
               key: admin-pw
+        - name: INTERFACE
+          value: net1
         readinessProbe:
             exec:
               command: ['dig', '@127.0.0.1', 'google.com']

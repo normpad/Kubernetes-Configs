@@ -14,6 +14,12 @@ spec:
     metadata:
       labels:
         app: cloudflared
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |
+          [{
+            "name": "exposed-services-network",
+            "ips": ["10.101.101.10/24"]
+          }]
     spec:
       tolerations:
         - key: "node.kubernetes.io/unreachable"

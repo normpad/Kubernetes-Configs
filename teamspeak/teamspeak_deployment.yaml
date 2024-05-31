@@ -53,25 +53,25 @@ spec:
   accessModes:
   - ReadWriteMany
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: teamspeak
-  namespace: default
-spec:
-  selector:
-    app: teamspeak
-  type: LoadBalancer
-  ports:
-  # - name: server-query
-  #   port: 10011
-  - name: file-transfer
-    port: 30033
-  - name: voice
-    port: 9987
-    protocol: UDP
-  loadBalancerIP: 10.132.132.132
-  externalTrafficPolicy: Local
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: teamspeak
+#   namespace: default
+# spec:
+#   selector:
+#     app: teamspeak
+#   type: LoadBalancer
+#   ports:
+#   # - name: server-query
+#   #   port: 10011
+#   - name: file-transfer
+#     port: 30033
+#   - name: voice
+#     port: 9987
+#     protocol: UDP
+#   loadBalancerIP: 10.132.132.132
+#   externalTrafficPolicy: Local
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -95,7 +95,11 @@ spec:
       labels:
         app:  teamspeak
       annotations:
-         k8s.v1.cni.cncf.io/networks: services-network
+         k8s.v1.cni.cncf.io/networks: |
+          [{
+            "name": "teamspeak-network",
+            "ips": ["10.132.132.132/24"]
+          }]
     spec:
       # initContainers:
         # Init containers are exactly like regular containers, except:
