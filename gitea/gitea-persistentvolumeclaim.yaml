@@ -2,13 +2,11 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   creationTimestamp: null
-  labels:
-    io.kompose.service: gitea-claim1
-  name: gitea-claim1
+  name: gitea
   namespace: default
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   storageClassName: "nfs-sc"
   resources:
     requests:
