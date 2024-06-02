@@ -4,3 +4,4 @@ metadata:
   name: pihole-adlists.list
 data:
   adlists.list: |
+    https://easylist.to/easylist/easylist.txt
