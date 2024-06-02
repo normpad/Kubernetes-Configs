@@ -2,23 +2,23 @@ apiVersion: apps/v1
 #kind: DaemonSet
 kind: Deployment
 metadata:
-  name: pihole-deployment
+  name: pihole0-deployment
   labels:
-    app: pihole
+    app: pihole0
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: pihole
+      app: pihole0
   template:
     metadata:
       labels:
-        app: pihole
+        app: pihole0
       annotations:
         k8s.v1.cni.cncf.io/networks: |
           [{
             "name": "services-network",
-            "ips": ["10.10.10.10/24", "10.10.10.11/24"]
+            "ips": ["10.10.10.10/24"]
           }]
     spec:
       tolerations:
@@ -36,7 +36,7 @@ spec:
         whenUnsatisfiable: DoNotSchedule
         labelSelector:
           matchLabels:
-            app: pihole
+            app: pihole0
       containers:
       - name: pihole
         image: pihole/pihole:latest
