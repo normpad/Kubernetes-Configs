@@ -14,8 +14,12 @@ data:
     10.0.0.2 tower.local
     10.0.0.4 switch
     10.0.0.4 switch.local
+    10.0.0.5 ap1
+    10.0.0.5 ap1.local
     10.0.0.10 regula1
     10.0.0.10 regula1.local
+    10.0.0.11 warpcore
+    10.0.0.11 warpcore.local
     10.101.101.100 swag
     10.101.101.100 swag.local
     10.101.101.101 nextcloud
