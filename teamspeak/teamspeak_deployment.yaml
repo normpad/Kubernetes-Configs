@@ -4,34 +4,34 @@
 #   name: teamspeak
 #   labels:
 #     name: teamspeak
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: teamspeak-pvc
-  namespace: default
-  labels:
-    app: teamspeak
-spec:
-  storageClassName: nfs-sc
-  accessModes:
-  - ReadWriteMany
-  resources:
-    requests:
-      storage: 2Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: jts3servermod-pvc
-  namespace: default
-spec:
-  resources:
-    requests:
-      storage: 1G
-  storageClassName: nfs-sc
-  accessModes:
-  - ReadWriteMany
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: teamspeak-pvc
+#   namespace: default
+#   labels:
+#     app: teamspeak
+# spec:
+#   storageClassName: nfs-sc
+#   accessModes:
+#   - ReadWriteMany
+#   resources:
+#     requests:
+#       storage: 2Gi
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: jts3servermod-pvc
+#   namespace: default
+# spec:
+#   resources:
+#     requests:
+#       storage: 1G
+#   storageClassName: nfs-sc
+#   accessModes:
+#   - ReadWriteMany
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -82,23 +82,14 @@ spec:
           # limits:
           #   cpu: 100m
           #   memory: 100Mi
-        # livenessProbe:
-        #   tcpSocket:
-        #     port: 80
-        #   initialDelaySeconds: 5
-        #   timeoutSeconds: 5
-        #   successThreshold: 1
-        #   failureThreshold: 3
-        #   periodSeconds: 10
-        # readinessProbe:
-        #   httpGet:
-        #     path: /_status/healthz
-        #     port: 80
-        #   initialDelaySeconds: 5
-        #   timeoutSeconds: 2
-        #   successThreshold: 1
-        #   failureThreshold: 3
-        #   periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 10011
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
         env:
         - name: TS3SERVER_LICENSE
           value: accept
@@ -126,7 +117,7 @@ spec:
           containerPort: 10011
           protocol: TCP
         volumeMounts:
-        - name: teamspeak-claim
+        - name: teamspeak-volume
           mountPath: /var/ts3server/
       - name: jts3servermod
         image: phaldan/jts3servermod
@@ -135,15 +126,19 @@ spec:
           #   memory: "128Mi"
           #   cpu: "500m"
         volumeMounts:
-        - name: jts3servermod-claim
+        - name: jts3servermod-volume
           mountPath: /JTS3ServerMod/config
       volumes:
-        - name: teamspeak-claim
-          persistentVolumeClaim:
-            claimName: teamspeak-pvc
-        - name: jts3servermod-claim
-          persistentVolumeClaim:
-            claimName: jts3servermod-pvc
+        - name: teamspeak-volume
+          nfs:
+            server: 10.0.0.2
+            path: /mnt/user/kubernetes/volumes/teamspeak
+            readOnly: false
+        - name: jts3servermod-volume
+          nfs:
+            server: 10.0.0.2
+            path: /mnt/user/kubernetes/volumes/jts3servermod
+            readOnly: false
 
       restartPolicy: Always
 

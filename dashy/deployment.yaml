@@ -39,5 +39,7 @@ spec:
           name: dashy-volume
       volumes:
       - name: dashy-volume
-        persistentVolumeClaim:
-          claimName: dashy-pvc
+        nfs:
+          server: 10.0.0.2
+          path: /mnt/user/kubernetes/volumes/dashy
+          readOnly: false

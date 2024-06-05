@@ -39,13 +39,15 @@ spec:
               memory: "400Mi"
           volumeMounts:
             - mountPath: /app/data
-              name: uptime-kuma
+              name: uptime-kuma-volume
       dnsConfig: 
         nameservers:
           - 10.10.10.10
           - 10.10.10.11
       restartPolicy: Always
       volumes:
-        - name: uptime-kuma
-          persistentVolumeClaim:
-            claimName: uptime-kuma
+        - name: uptime-kuma-volume
+          nfs:
+            server: 10.0.0.2
+            path: /mnt/user/kubernetes/volumes/uptime-kuma
+            readOnly: false
