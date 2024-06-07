@@ -57,7 +57,7 @@ spec:
       annotations:
          k8s.v1.cni.cncf.io/networks: |
           [{
-            "name": "teamspeak-network",
+            "name": "teamspeak-network-default",
             "ips": ["10.132.132.132/24"]
           }]
     spec:

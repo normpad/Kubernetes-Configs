@@ -17,7 +17,7 @@ spec:
       annotations:
         k8s.v1.cni.cncf.io/networks: |
           [{
-            "name": "exposed-services-network",
+            "name": "exposed-services-network-default",
             "ips": ["10.101.101.10/24"]
           }]
     spec:

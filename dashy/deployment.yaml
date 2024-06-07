@@ -16,7 +16,7 @@ spec:
       annotations:
         k8s.v1.cni.cncf.io/networks: |
           [{
-            "name": "services-network",
+            "name": "services-network-default",
             "ips": ["10.10.10.111/24"]
           }]
     spec:

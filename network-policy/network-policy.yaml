@@ -4,8 +4,5 @@ metadata:
   name: deny-all-policy
   namespace: default
 spec:
-  # podSelector:
-  #   matchLabels:
-  #     app: nginx
   ingress: []
   egress: []

@@ -11,6 +11,23 @@ spec:
       "master": "eth0.4",
       "mode": "bridge",
       "ipam": {
+        "type": "static"
+      }
+    }'
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: services-network-default
+  namespace: default
+spec:
+  config: '{
+      "cniVersion": "0.3.0",
+      "name": "services-network-default",
+      "type": "macvlan",
+      "master": "eth0.4",
+      "mode": "bridge",
+      "ipam": {
         "type": "static",
         "routes": [
           { "dst": "0.0.0.0/0", "gw": "10.10.10.1" }
@@ -27,6 +44,23 @@ spec:
   config: '{
       "cniVersion": "0.3.0",
       "name": "exposed-services-network",
+      "type": "macvlan",
+      "master": "eth0.6",
+      "mode": "bridge",
+      "ipam": {
+        "type": "static"
+      }
+    }'
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: exposed-services-network-default
+  namespace: default
+spec:
+  config: '{
+      "cniVersion": "0.3.0",
+      "name": "exposed-services-network-default",
       "type": "macvlan",
       "master": "eth0.6",
       "mode": "bridge",
@@ -51,9 +85,63 @@ spec:
       "master": "eth0.7",
       "mode": "bridge",
       "ipam": {
+        "type": "static"
+      }
+    }'
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: teamspeak-network-default
+  namespace: default
+spec:
+  config: '{
+      "cniVersion": "0.3.0",
+      "name": "teamspeak-network-default",
+      "type": "macvlan",
+      "master": "eth0.7",
+      "mode": "bridge",
+      "ipam": {
         "type": "static",
         "routes": [
           { "dst": "0.0.0.0/0", "gw": "10.132.132.1" }
+        ]
+      }
+    }'
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: iot-network
+  namespace: default
+spec:
+  config: '{
+      "cniVersion": "0.3.0",
+      "name": "iot-network",
+      "type": "macvlan",
+      "master": "eth0.3",
+      "mode": "bridge",
+      "ipam": {
+        "type": "static"
+      }
+    }'
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: iot-network-default
+  namespace: default
+spec:
+  config: '{
+      "cniVersion": "0.3.0",
+      "name": "iot-network",
+      "type": "macvlan",
+      "master": "eth0.3",
+      "mode": "bridge",
+      "ipam": {
+        "type": "static",
+        "routes": [
+          { "dst": "0.0.0.0/0", "gw": "192.168.3.1" }
         ]
       }
     }'
