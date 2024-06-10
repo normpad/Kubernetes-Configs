@@ -16,7 +16,10 @@ spec:
         image: linuxserver/duckdns
         env:
         - name: SUBDOMAINS
-          value: "tempest-cloud"
+          valueFrom:
+            secretKeyRef:
+              name: duckdns
+              key: subdomains
         - name: TOKEN
           valueFrom:
             secretKeyRef:
